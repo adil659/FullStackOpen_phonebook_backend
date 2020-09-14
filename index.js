@@ -2,7 +2,7 @@ const express = require('express');
 const { request } = require('express');
 var bodyParser = require('body-parser')
 var morgan = require('morgan')
-
+const cors = require('cors')
 
 const app = express()
 
@@ -38,6 +38,7 @@ morgan.token('body', function getBody (req) {
     return JSON.stringify(req.body)
   })
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
@@ -93,7 +94,7 @@ app.post('/api/persons', (req, res) => {
     person['id'] = Math.floor(Math.random() * 10000)
     console.log(person)
     persons.push(person)
-    res.json(persons)
+    res.json(person)
 })
 
 
@@ -103,7 +104,7 @@ app.get('/api/info', (req, res) => {
     ${new Date}`)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
