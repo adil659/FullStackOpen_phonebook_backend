@@ -47,6 +47,7 @@ app.get('/', (req, res) => {
 app.put('/api/persons/:id', (req, res, next) => {
     const body = req.body
     console.log("update: ", body)
+    console.log("id: ", req.params.id)
     const person = {
         name: body.name,
         number: body.number,
