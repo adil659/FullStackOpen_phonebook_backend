@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
 
-app.put('/api/notes/:id', (req, res, next) => {
+app.put('/api/persons/:id', (req, res, next) => {
     const body = request.body
     console.log("update: ", body)
     const person = {
